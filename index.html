@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Aluno</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body{
+            background-color:#F5F5F5;
+        }
+
+        #titulo{
+            font-family: 'Raleway';
+            font-weight:600;
+            font-size:60px;   
+            text-align:center;                             
+        }
+
+        #titulo img{
+            height: 132px;
+        }
+
+        .form{
+            font-family: 'Raleway';
+            font-weight:400;
+            font-size: 48px;
+
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .form input{
+            height:80px;
+            width:592px;
+            border-radius:40px;
+            border:0px;
+            text-align:center;
+
+            font-family: 'Inter';
+            font-size:48px;
+            font-weight: 400;
+            color:black;
+
+            padding-left:10px;
+            padding-right:20px;
+        }
+
+        .form button{
+            border:0px;
+            border-radius:10px;
+            width:333px;
+            height:80px;
+            background-color: #A2A2A2;
+
+            font-family: 'Raleway';
+            font-size:48px;
+            font-weight: 700;
+
+            color:white;
+            margin-top:5%;
+            cursor: pointer;
+        }
+
+        .form button:hover{
+            opacity: 0.8;
+        }
+
+        .visivel{            
+            visibility: visible;
+        }
+
+        .invisivel{
+            height:0px;
+            visibility: hidden;
+        }
+    </style>
+
+    <script>
+
+    function calculaMedia(){
+        let n1 = document.getElementById("nota1").value
+        let n2 = document.getElementById("nota2").value
+        let media = (eval(n1) + eval(n2)) / 2
+
+        if(media >= 6)
+        {            
+            document.getElementById("statusAprovado").innerHTML = "aprovado";
+            document.getElementById("statusAprovado").style.color = "green";
+            document.getElementById("media").value = media;
+        }
+        else{
+            document.getElementById("statusAprovado").innerHTML = "reprovado";
+            document.getElementById("statusAprovado").style.color = "red";
+            document.getElementById("media").value = media;
+        }
+
+        document.getElementById("formCalculo").className="form invisivel"
+        document.getElementById("formResultado").className="form visivel"
+
+    }
+    </script>
+</head>
+<body>
+
+    <h1 id="titulo">
+        Painel do Aluno 
+        <img src="./assets/images/lapis.png" alt="Lápis" />
+    </h1>
+    
+    <div id="formCalculo" class="form visivel">
+        <p>Digite a primeira nota do aluno:</p>
+        <input type="number" id="nota1" placeholder="Primeira Nota">
+        <p>Digite a segunda nota do aluno:</p>
+        <input type="number" id="nota2" placeholder="Segunda Nota">
+        <button onclick="calculaMedia()"> Calcular </button>
+    </div>
+
+    <div id="formResultado" class="form invisivel">
+        <p>A média do aluno é:</p>
+        <input type="number" readonly id="media" placeholder="Resultado">
+        <p>Portanto está <span id="statusAprovado"></span>!</p>
+    </div>
+
+
+</body>
+</html>
